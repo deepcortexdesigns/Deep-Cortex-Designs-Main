@@ -1,4 +1,3 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Deep Cortex Designs | Web Design & Development for Small Businesses in Ontario & Canada</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Deep Cortex Designs builds fast, modern websites for small businesses across Canada. One designer, direct communication, no agency bureaucracy. Based in the Niagara Region, Ontario.">
@@ -277,12 +276,23 @@
   }
   .field{margin-bottom:16px;}
   .field label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px;}
-  .field input,.field textarea{
+  .field input,.field select,.field textarea{
     width:100%;padding:12px 14px;border-radius:8px;
     border:1px solid var(--line);background:var(--paper);color:var(--ink);
     font-family:inherit;font-size:14.5px;
   }
-  .field input:focus,.field textarea:focus{outline:2px solid var(--teal);outline-offset:1px;}
+  .field textarea{resize:vertical;min-height:80px;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--teal);outline-offset:1px;}
+  .check-fieldset{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:16px;}
+  .check-fieldset legend{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;padding:0 4px;}
+  .check-option{display:flex;gap:10px;align-items:center;padding:6px 0;font-size:14.5px;color:var(--body);}
+  .check-option input{accent-color:var(--teal);width:17px;height:17px;flex:none;}
+  .form-note{color:var(--muted);font-size:13.5px;text-align:center;margin-top:16px;}
+  .form-privacy{color:var(--muted);font-size:12.5px;text-align:center;margin-top:8px;opacity:.8;}
+  .form-submit{width:100%;}
+  #form-success, #form-error{display:none;text-align:center;padding:30px 10px;}
+  #form-success h3, #form-error h3{margin:0 0 10px;font-size:22px;color:var(--ink);}
+  #form-success p, #form-error p{color:var(--muted);margin:0;}
   .contact-info{display:flex;flex-direction:column;gap:22px;justify-content:center;min-width:0;}
   .contact-info .item{border-bottom:1px solid var(--line);padding-bottom:18px;}
   .contact-info .label{font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:6px;}
@@ -360,7 +370,7 @@
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a class="nav-cta" href="mailto:hello@deepcortexdesigns.ca">Get a quote</a>
+    <a class="nav-cta" href="#contact">Get a quote</a>
     <label for="nav-toggle" class="nav-toggle-btn" aria-label="Toggle menu"><span></span><span></span><span></span></label>
   </div>
 </nav>
@@ -565,7 +575,7 @@
         <h2>I'm building my portfolio — you get the early-client rate.</h2>
         <p>As a new studio, my first few 2026 projects are priced to reflect that: reduced rates for Starter and Growth builds in exchange for a case study and an honest review once your site is live.</p>
       </div>
-      <div class="offer-cta"><a class="btn-primary" href="mailto:hello@deepcortexdesigns.ca">Claim founding rate</a></div>
+      <div class="offer-cta"><a class="btn-primary" href="#contact">Claim founding rate</a></div>
     </div>
   </div>
 </section>
@@ -609,9 +619,72 @@
       <p>Send a few details and I'll follow up within one business day with next steps — no obligation.</p>
     </div>
     <div class="contact-grid">
-      <div class="contact-card" style="display:flex;flex-direction:column;justify-content:center;gap:18px;">
-        <p style="margin:0;color:var(--body);font-size:17px;">Ready to talk about your site? Send an email and I'll follow up within one business day with next steps — no obligation.</p>
-        <a class="btn-primary" href="mailto:hello@deepcortexdesigns.ca" style="align-self:flex-start;">Send an email</a>
+      <div class="contact-card">
+        <form id="contact-request-form" action="https://formspree.io/f/mzezrojg" method="POST">
+          <input type="hidden" name="_subject" value="New website inquiry from deepcortexdesigns.ca">
+          <div class="field">
+            <label for="ct-name">Your Name</label>
+            <input type="text" id="ct-name" name="name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="ct-business">Business Name</label>
+            <input type="text" id="ct-business" name="business_name" required autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="ct-email">Email</label>
+            <input type="email" id="ct-email" name="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="ct-type">What Type of Business Do You Have?</label>
+            <input type="text" id="ct-type" name="business_type" required placeholder="e.g. landscaping, consulting, cleaning">
+          </div>
+          <div class="field">
+            <label for="ct-package">Which Service Are You Interested In?</label>
+            <select id="ct-package" name="service_interest" required>
+              <option value="">Select one&hellip;</option>
+              <option value="Starter Website ($499 CAD)">Starter Website ($499 CAD)</option>
+              <option value="Custom Design &amp; Booking (Custom Quote)">Custom Design &amp; Booking (Custom Quote)</option>
+              <option value="Custom Website (Custom Quote)">Custom Website (Custom Quote)</option>
+              <option value="Not sure yet — let's talk">Not sure yet &mdash; let's talk</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="ct-current">Facebook Page / Instagram / Current Website</label>
+            <input type="text" id="ct-current" name="current_presence" placeholder="Optional &mdash; paste a link if you have one">
+          </div>
+          <div class="field">
+            <label for="ct-about">Tell Me Briefly What Your Business Does</label>
+            <textarea id="ct-about" name="business_description" required rows="3"></textarea>
+          </div>
+          <fieldset class="check-fieldset">
+            <legend>What Would You Most Like Your Website to Do?</legend>
+            <label class="check-option"><input type="checkbox" name="goals[]" value="Give my business a professional online presence"> Give my business a professional online presence</label>
+            <label class="check-option"><input type="checkbox" name="goals[]" value="Generate customer inquiries"> Generate customer inquiries</label>
+            <label class="check-option"><input type="checkbox" name="goals[]" value="Showcase my services"> Showcase my services</label>
+            <label class="check-option"><input type="checkbox" name="goals[]" value="Showcase my work / portfolio"> Showcase my work / portfolio</label>
+            <label class="check-option"><input type="checkbox" name="goals[]" value="Explain my products or services"> Explain my products or services</label>
+            <label class="check-option"><input type="checkbox" name="goals[]" value="Reduce repetitive customer questions"> Reduce repetitive customer questions</label>
+            <label class="check-option"><input type="checkbox" name="goals[]" value="Replace an outdated website"> Replace an outdated website</label>
+            <label class="check-option"><input type="checkbox" name="goals[]" value="Reduce my reliance on social media"> Reduce my reliance on social media</label>
+            <label class="check-option"><input type="checkbox" name="goals[]" value="Help customers find/contact me"> Help customers find/contact me</label>
+            <label class="check-option"><input type="checkbox" name="goals[]" value="Other"> Other</label>
+          </fieldset>
+          <div class="field">
+            <label for="ct-notes">Anything Else You'd Like Me to Know?</label>
+            <textarea id="ct-notes" name="additional_notes" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn-primary form-submit" id="contact-submit-btn">Send My Details</button>
+          <p class="form-note">No payment &nbsp;|&nbsp; No obligation &nbsp;|&nbsp; No pressure</p>
+          <p class="form-privacy">Your information will only be used to respond to your inquiry.</p>
+        </form>
+        <div id="form-success">
+          <h3>Thanks &mdash; I've got your details.</h3>
+          <p>I'll follow up by email within one business day with next steps.</p>
+        </div>
+        <div id="form-error">
+          <h3>Something went wrong</h3>
+          <p>Please try again, or email hello@deepcortexdesigns.ca directly.</p>
+        </div>
       </div>
       <div class="contact-info">
         <div class="item"><div class="label">Email</div><div class="val"><a href="mailto:hello@deepcortexdesigns.ca">hello@deepcortexdesigns.ca</a></div></div>
@@ -658,5 +731,38 @@
     </div>
   </div>
 </footer>
-
-</body></html>
+<script>
+(function(){
+  var form = document.getElementById('contact-request-form');
+  if(!form) return;
+  var submitBtn = document.getElementById('contact-submit-btn');
+  var successEl = document.getElementById('form-success');
+  var errorEl = document.getElementById('form-error');
+  var submitting = false;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(submitting) return;
+    submitting = true;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    var data = new FormData(form);
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(response){
+      if(response.ok){
+        form.style.display = 'none';
+        successEl.style.display = 'block';
+      } else {
+        throw new Error('Submission failed');
+      }
+    }).catch(function(){
+      errorEl.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send My Details';
+      submitting = false;
+    });
+  });
+})();
+</script>
